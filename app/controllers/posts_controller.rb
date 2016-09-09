@@ -73,4 +73,11 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :body, :user_id, :image)
     end
+
+    def correct_user
+      post = Post.find(params[:id])
+      if current_user.id != post.user.id
+        redirect_to root_path
+      end
+    end
 end
