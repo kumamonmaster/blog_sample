@@ -11,33 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :body %>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :user_id %>
     ユーザーID
     <%= f.collection_select :user_id, User.all, :id, :id %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :interest_list, "興味・関心（カンマ区切り）" %><br>
-    <%= text_field_tag 'post[interest_list]', @post.interest_list.join(',') %>
+    <%= text_field_tag 'post[interest_list]', @post.interest_list.join(','), class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'submit', class: "btn btn-success" %>
   </div>
 <% end %>
