@@ -7,6 +7,7 @@
     <tr>
       <th>Title</th>
       <th>Body</th>
+      <th>タグ</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
         <% end %>
         <td><%= link_to post.title, post_path(post) %></td>
         <td><%= post.body %></td>
+        <td><%= render 'posts/tag_list', tag_list: post.interest_list %></td>
       </tr>
     <% end %>
   </tbody>
