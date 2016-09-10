@@ -22,12 +22,6 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :user_id %>
-    ユーザーID
-    <%= f.collection_select :user_id, User.all, :id, :id %>
-  </div>
-
-  <div class="form-group">
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>
