@@ -17,16 +17,22 @@
     <% @posts.each do |post| %>
       <tr>
         <% if post.image? %>
-          <td><%= image_tag post.image.url %></td>
+          <td><%=  image_tag post.image.url%></td>
         <% else %>
           <td><%= image_tag 'noimage.gif' %></td>
         <% end %>
-        <td><%= link_to post.title, post_path(post) %></td>
+        <td><%= link_to post.title, post_path(post)%></td>
         <td><%= post.body %></td>
         <td><%= render 'posts/tag_list', tag_list: post.interest_list %></td>
+        <td>
+          <% if post.favorited_by? current_user %>
+            <%= link_to "いいね解除", post_favorites_path(post), method: :delete %>
+          <% else %>
+            <%= link_to "いいね", post_favorites_path(post), method: :post %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
-</table>
 
 <%= paginate @posts %>

@@ -36,6 +36,7 @@ gem 'rmagick'
 gem 'kaminari'
 gem 'acts-as-taggable-on'
 gem 'less-rails'
+# gem 'sprockets'
 gem 'twitter-bootstrap-rails'
 
 group :development, :test do
