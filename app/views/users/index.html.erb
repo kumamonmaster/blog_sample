@@ -1,13 +1,7 @@
-<% @users.each do |u| %>
-  <div>
-    <%= link_to u.email, user_path(u) %>
-    <span>@<%= u.email %></span>
-  </div>
-  <div class="follow-unfollow">
-    <% if u.followed_by? current_user %>
-      <%= link_to "フォロー解除", user_relationships_path(u), method: :delete %>
-    <% else %>
-      <%= link_to "フォロー", user_relationships_path(u), method: :post %>
-    <% end %>
-  </div>
-<% end %>
+<h2>Users</h2>
+
+<div class="list-group">
+  <% @users.each do |u| %>
+    <%= link_to u.email, user_path(u), class: "list-group-item" %>
+  <% end %>
+</div>

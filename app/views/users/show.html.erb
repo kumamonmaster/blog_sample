@@ -1,26 +1,17 @@
-<ul>
-  <li>
-    <%= link_to user_path(@user) do %>
-      <div class="text">投稿数</div>
-      <div class="num"><%= @user.posts.count %></div>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to follows_user_path(@user) do %>
-      <div class="text">フォロー</div>
-      <div class="num"><%= @user.followings.count %></div>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to followers_user_path(@user) do %>
-      <div class="text">フォロワー</div>
-      <div class="num"><%= @user.followers.count %></div>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to favorites_user_path(@user) do %>
-      <div class="text">いいね一覧</div>
-      <div class="num"><%= @user.favorites.count %></div>
-    <% end %>
-  </li>
-</ul>
+<%= render 'info' %>
+<h2>Posts</h2>
+<% @user.posts.each do |post| %>
+  <div class="thumbnail">
+    <%= image_tag post.image.url if post.image? %>
+    <div class="caption">
+      <h3><%= link_to post.title, post_path(post) %></h3>
+      <p><%= post.body %></p>
+      <%= render 'posts/tag_list', tag_list: post.interest_list %>
+      <% if post.favorited_by? current_user %>
+        <%= link_to "いいね解除", post_favorites_path(post), method: :delete %>
+      <% else %>
+        <%= link_to "いいね", post_favorites_path(post), method: :post %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

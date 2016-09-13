@@ -1,8 +1,8 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user
 
   def create
-    @user = User.find(params[:user_id])
     follow = current_user.relationships.build(following_id: @user.id)
     if follow.save
         redirect_to posts_path, notice: "フォローしました"
@@ -12,9 +12,13 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:user_id])
     follow = current_user.relationships.find_by!(following_id: @user.id)
     follow.destroy
     redirect_to posts_url, notice: "フォロー解除しました"
   end
+
+  private
+    def set_user
+      @user = User.find(params[:user_id])
+    end
 end

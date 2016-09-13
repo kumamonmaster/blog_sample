@@ -1,0 +1,26 @@
+<h2><%= @user.email %></h2>
+<% if @user.id != current_user.id %>
+  <btn class="btn btn-default">
+    <% if @user.followed_by? current_user %>
+      <%= link_to "フォロー解除", user_relationships_path(@user), method: :delete %>
+    <% else %>
+      <%= link_to "フォロー", user_relationships_path(@user), method: :post %>
+    <% end %>
+  </btn>
+<% end %>
+
+<%= link_to user_path(@user), class: "btn btn-default" do %>
+  投稿<%= @user.posts.count %>件
+<% end %>
+
+<%= link_to follows_user_path(@user), class: "btn btn-default" do %>
+  フォロー<%= @user.followings.count %>人
+<% end %>
+
+<%= link_to followers_user_path(@user), class: "btn btn-default" do %>
+  フォロワー<%= @user.followers.count %>人
+<% end %>
+
+<%= link_to favorites_user_path(@user), class: "btn btn-default" do %>
+  いいね<%= @user.favorites.count %>件
+<% end %>
